@@ -1,0 +1,279 @@
+\documentclass[10pt,a4paper,float]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{fleqn}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0pt}
+\author{Šťur}
+\title{Použití TI-89 v úlohách předmětu BPC-MA3}
+\begin{document}
+\maketitle
+
+\pagebreak
+
+\section{Prerekvizity}
+Vyžadován je tabulkový editor CellSheet, který si můžete stáhnout zde:\\ \url{https://education.ti.com/en/software/details/en/C348D29C99284143B9E3FE93CF6742A6/89cellsheet}
+
+Taktéž je vyžadován Simultaneous Equation Solver App for the TI-89 Titanium, ke stažení zde:\\ \url{https://education.ti.com/en/software/details/en/BD358C4836B84DBCBA254D6554FBBEAC/89simultaneousequationsolver}
+
+\section{Základní práce s kalkulačkou}
+\subsection{Změna aktuálně používané složky a její vytvoření}
+Je praktické si vytvářet pro různé předměty složky a práci soustředit do nich.
+
+Vytvoření probíhá následovně:
+
+Klávesovou kombinací [2nd]+[-] vyvoláme VAR-LINK menu.
+
+Klávesou [F1] následně vyvoláme Manage menu, Create folder je pátá položka.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CREATEFOLDER}
+\end{figure}
+
+Pomocí [ESC] obrazovku opustíme.
+
+Chceme-li se do složky přepnout, vyvoláme klávesou [MODE] nastavení kalkulačky a změníme druhou položku.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CHANGEFOLDER}
+\end{figure}
+
+Položku volíme šipkou doprava, potvrzujeme klávesou [ENTER] a s uložením nastavení opouštíme taktéž klávesou [ENTER].
+
+\pagebreak
+
+\subsection{Uložení funkce jedné proměnné}
+V MODE menu se ujistěte, že položka Graph je nastavena na FUNCTION.
+
+Klávesovou kombinací [$\diamond$]+[F1] vyvoláme Y= menu. Zde můžeme do jednotlivých proměnných ukládat kýžené funkce.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1FUNC}
+\end{figure}
+
+Uložit funkci do funkční proměnné lze taktéž z výchozí obrazovky následovně. Šipka je vyvolána klávesou [STO $\triangleright$].
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1FUNC_ULOZ}
+\end{figure}
+
+Obecně v TI-89 ukládáme výsledky již při zadávání příkladu pomocí [STO $\triangleright$] a kýženého názvu proměnné, který u běžných číselných/maticových/řetězcových výsledků může být jakýkoliv (např. mnouk).
+
+Ve výpočtech pak tyto funkce můžeme využívat následovně:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1FUNC_UZITI}
+\end{figure}
+
+Pakliže výsledek není ve tvaru, který by nám vyhovoval (například je zlomkem), jako desetinné číslo ho můžeme zobrazit, pakliže místo klávesy [ENTER] použijeme kombinaci [$\diamond$]+[ENTER] ($\approx$).
+
+\pagebreak
+
+\subsection{Uložení funkce dvou proměnných}
+V MODE menu je nutno položku Graph přepnout do 3D:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/3D}
+\end{figure}
+
+Práce pak probíhá stejně, jako s funkcí jedné proměnné:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2FUNC}
+\end{figure}
+
+Musíme však mít na paměti, že do závorek za názvem proměnné je třeba dosadit 2 hodnoty, jelikož jde o funkci dvou proměnných:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2FUNC_UZITI}
+\end{figure}
+
+\pagebreak
+
+\subsection{Vytvoření matice/vektoru}
+Velmi jednoduché matice můžeme zadat přímo z výchozí obrazovky, je to však praktické nanejvýš u vektorů. Vektor [5;3] zadáme jako:
+
+[[5][3]]
+
+Pro větší matice je žádoucí používat vestavěnou aplikaci Data/Matrix Editor, kterou nalezneme v APPS nabídce. Zvolíme New, což nás dostane na následující obrazovku:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/DATAEDITOR}
+\end{figure}
+
+Type je nutno přepnout na Matrix, do kolonky Variable zadáme název proměnné, do Row dimension a Col dimension pak počet řádků, respektive sloupců.
+Na následujícím obrázku je příklad vytvoření 2x2 matice s názvem "mnau":
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/MNAUMATRIX}
+\end{figure}
+
+Po potvrzení můžeme zadávat:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/MATRIXEDIT1}
+\end{figure}
+
+\pagebreak
+
+Kromě čísel je možno do matice vkládat i funkce:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/MATRIXEDIT2}
+\end{figure}
+
+Aplikaci opustíme QUIT kombinací, ([2ND]+[ESC]), uložení je automatické.
+
+Na výchozí obrazovce pak matici vyvoláme prostým zadáním názvu proměnné, můžeme s ní i provádět libovolné dovolené matematické operace:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/UZITIMATIC1}
+\end{figure}
+
+V matici máme dosazenou funkci. Pakliže chceme za proměnné ve funkci (nejen u matic) dynamicky dosazovat, použijeme za příkladem (a před případným STO) $\vert$x=(číslo). Svislou čáru vyvoláme klávesou [ $\vert$ ].
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/UZITIMATIC2}
+\end{figure}
+
+\pagebreak
+
+U funkcí více proměnných používáme $\vert$x=(číslo) and y=(číslo). Je nutno to napsat i s mezerami, pro usnadnění si jde " and " i s mezerami najít v nabídce CATALOG vyvolané tlačítkem [CATALOG]. V CATALOGu je možno se rychle pohybovat pomocí počátečního písmena, která můžeme vidět u jednotlivých kláves bíle. Pro přeskok do sekce funkcí začínajících písmenem 'a' stiskneme klávesu [=]:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CATALOG}
+\end{figure}
+
+Výsledek pro funkci dvou proměnných je takovýhle:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/UZITIMATIC3}
+\end{figure}
+
+\subsection{Derivování}
+Derivovat můžeme přímo z výchozí obrazovky, potřebnou funkci vyvoláme kombinací [2ND]+[8]. První parametr je vstupní funkce, druhý proměnná, podle které derivujeme (díky tomu je možno provádět i parciální derivace). Vstupem může být jak ručně napsaná funkce, tak funkce uložená do speciální proměnné:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/DERIVACE}
+\end{figure}
+
+\pagebreak
+
+\subsection{Integrování}
+Integrovat můžeme přímo z výchozí obrazovky, potřebnou funkci vyvoláme kombinací [2ND]+[7]. Funkce má 4 parametry, 2 jsou volitelné. První parametr je vstupní funkce, druhý proměnná, podle které integrujeme. Vstupem může být jak ručně napsaná funkce, tak funkce uložená do speciální proměnné:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/INTEGROVANI1}
+\end{figure}
+
+Pakliže chceme použít určitý integrál, využijeme i třetí a čtvrtý parametr, kterým je dolní a horní mez:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/INTEGROVANI2}
+\end{figure}
+
+\subsection{Základy práce s tabulkovým procesorem CellSheet}
+Aplikaci CellSheet, pakliže ji máme nainstalovanou, vyvoláme z nabídky APPS -> FlashApps... -> CellSheet, kde z nabídky zvolíme New. V dialogu zvolíme složku a název proměnné. Otevře se nám okno nápadně připomínající Excel:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CELL1}
+\end{figure}
+
+Práce probíhá téměř na chlup stejně jako se známým tabulkovým procesorem. Vzorce začínáme rovnítkem, buňky označujeme kombinací sloupec+řádek (např. A1, možno psát i a1), konstantní řádky/sloupce/buňky ve vzorci označujeme dolarem pomocí klávesy [F5].
+
+\pagebreak
+
+Pakliže zvolená funkce (např. sum) pracuje s rozsahem buněk, oddělíme ve vzorci buňky dvojtečkou, např. =sum(a1:a3):
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CELL2}
+\end{figure}
+
+Po vzoru konvenčních tabulkových procesorů je taktéž možno vybranou buňku s nějakým vzorcem zkopírovat (pomocí kombinace [$\diamond$]+[ $\uparrow$ ], vybrat rozsah buněk, kam chceme vzorec vložit (za stálého stisku klávesy [ $\uparrow$ ] mačkáme šipku odpovídající kýženému směru, dokud není zvolen žádaný rozsah)...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CELL3}
+\end{figure}
+
+...načež pomocí [$\diamond$]+[ESC] provedeme vložení:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CELL4}
+\end{figure}
+
+Chceme-li hodnotu nějaké buňky exportovat do standardní proměnné, vybereme v Edit ([F3]) nabídce funkci Export...
+
+\pagebreak
+
+V dialogu zvolíme Type: Expr, do Variable vložíme název proměnné, do Cell zadáme buňku (bývá předvyplněno, pakliže jsme export vyvolali na námi kýžené buňce) a odentrujeme.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CELL5}
+\end{figure}
+
+\subsection{Řešení soustav lineárních rovnic}
+Stejně jako u Casio kalkulaček lze toto řešit pomocí matic, což však může být zdlouhavé. Lze si nicméně nainstalovat aplikaci Simultaneous Eqn Solver.
+
+Tu spustíme pomocí APPS -> FlashApps... -> Simultaneous Eqn Solver. Z nabídky vybereme New...
+
+Dialog se nás zeptá na počet rovnic a neznámých, který zadáme, například 2 a 2. Otevře se toto okno:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/SYSEQ1}
+\end{figure}
+
+Zápis provádíme maticově, sloupce a1 až an označují matici neznámých, sloupec b1 je vektor pravé strany. Předpokládejme, že chceme vložit následující rovnici:
+
+\begin{align*}
+	x + y &= 5\\
+	2x - 3y &= 2
+\end{align*}
+
+Zápis bude vypadat takto:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/SYSEQ2}
+\end{figure}
+
+\pagebreak
+
+Výsledky vyvoláme stisknutím klávesy [F5]:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/SYSEQ3}
+\end{figure}
+
+\end{document}
