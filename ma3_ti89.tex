@@ -6,15 +6,20 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{lmodern}
-\usepackage{fleqn}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{icomma}
+\usepackage{parskip}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \setlength{\parindent}{0pt}
 \author{Šťur}
 \title{Použití TI-89 v úlohách předmětu BPC-MA3}
 \begin{document}
 \maketitle
+
+\pagebreak
+
+\tableofcontents
 
 \pagebreak
 
@@ -49,6 +54,8 @@ Chceme-li se do složky přepnout, vyvoláme klávesou [MODE] nastavení kalkula
 
 Položku volíme šipkou doprava, potvrzujeme klávesou [ENTER] a s uložením nastavení opouštíme taktéž klávesou [ENTER].
 
+\textit{Poznámka: pro účely počítání MA3 může být praktické vynucení zobrazování výsledků jako desetinných čísel. V MODE menu se klávesou [F2] přepněte na stranu 2 a Exact/Approx položku změňte na APPROXIMATE a uložte.}
+
 \pagebreak
 
 \subsection{Uložení funkce jedné proměnné}
@@ -61,7 +68,7 @@ Klávesovou kombinací [$\diamond$]+[F1] vyvoláme Y= menu. Zde můžeme do jedn
 	\includegraphics[width=.5\textwidth]{img/1FUNC}
 \end{figure}
 
-Uložit funkci do funkční proměnné lze taktéž z výchozí obrazovky následovně. Šipka je vyvolána klávesou [STO $\triangleright$].
+Uložit funkci do funkční proměnné lze taktéž z výchozí obrazovky následovně. Šipka je vyvolána klávesou [STO~$\triangleright$].
 
 \begin{figure}[H]
 	\centering
@@ -275,5 +282,149 @@ Výsledky vyvoláme stisknutím klávesy [F5]:
 	\centering
 	\includegraphics[width=.5\textwidth]{img/SYSEQ3}
 \end{figure}
+
+\pagebreak
+
+\section{Numerické metody}
+\subsection{Metoda nejmenších čtverců}
+Metodou nejmenších čtverců proložte následující body parabolou.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l|l|l|l|l}
+		x & 2,8 & 3,2 & 3,5 & 3,9 \\ \hline
+		y & 0,4 & 0,3 & 0,8 & 1,1
+	\end{tabular}
+\end{table}
+
+Tato úloha je ideální pro využití aplikací CellSheet a Simultaneous Equation Solver, s jejichž správným využitím lze minimalizovat možnost lidské chyby.
+
+Soustava rovnic pro kvadratickou aproximaci metodou nejmenších čtverců je následující:
+
+\begin{align*}
+	C_0 (n + 1) + C_1 \sum_{i=0}^{n} x_i + C_2 \sum_{i=0}^{n} x_i^2 &= \sum_{i=0}^{n} y_i \\
+	C_0 \sum_{i=0}^{n} x_i + C_1 \sum_{i=0}^{n} x_i^2 + C_2 \sum_{i=0}^{n} x_i^3 &= \sum_{i=0}^{n} x_i y_i \\
+	C_0 \sum_{i=0}^{n} x_i^2 + C_1 \sum_{i=0}^{n} x_i^3 + C_2 \sum_{i=0}^{n} x_i^4 &= \sum_{i=0}^{n} x_i^2 y_i
+\end{align*}
+
+Ze soustavy je patrné, že potřebujeme vypočítat druhou, třetí a čtvrtou mocninu pro všechna $x$ v tabulce, součin $x$ a druhé mocniny $x$ s $y$ a provést součet všech sloupců vzniklé tabulky.
+
+Vhodný layout je násldující:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		i & $x_i$ & $y_i$ & $x_i^2$ & $x_i^3$ & $x_i^4$ & $x_i y_i$ & $x_i^2 y_i$ \\ \hline
+		\dots & \dots & \dots & \dots & \dots & \dots & \dots & \dots \\
+		\dots & \dots & \dots & \dots & \dots & \dots & \dots & \dots \\ \hline
+		$\sum$ & \dots & \dots & \dots & \dots & \dots & \dots & \dots \\
+	\end{tabular}
+\end{table}
+
+Nyní si spustíme program CellSheet a vytvoříme novou tabulku. Do prvních dvou sloupců zadáme hodnoty x a y ze zadání:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE1.PNG}
+\end{figure}
+
+\pagebreak
+
+Do buňky A5 nyní vložíme sumaci sloupce A, tedy hodnot $x_i$:\\
+=sum(a1:a4)
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE2.PNG}
+\end{figure}
+
+Abychom provedli i sumaci hodnot y, zkopírujeme buňku A5 do buňky B5. Klávesová kombinace pro kopírování je [$\diamond$]+[$\uparrow$], pro vložení [$\diamond$]+[ESC]. Pokud je buňka správně označena ke zkopírování, objeví se kolem ní tlustý rámeček.\\
+\textit{Nápověda: povšimněte si žlutozelených nápisů COPY a PASTE nad dlačítky [$\uparrow$] a [ESC]. To značí, že pro jejich použití musíte stisknout žlutozelenou klávesu [$\diamond$]}
+
+Po zkopírování je výsledek následovný:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE3.PNG}
+\end{figure}
+
+Do sloupce C můžeme vložit $x_i^2$. To provedeme vložením následujícího vzorce do buňky C1:\\
+=a1$\land$2
+
+Po jeho vložení buňku C1 zkopírujeme a kurzorem přejdeme do buňky níže. Stiskneme klávesu [$\uparrow$] a za jejího stálého držení přejdeme do buňky C4. Povšimněte si, že jsou všchny tyto buňky vybrány:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE4.PNG}
+\end{figure}
+
+\pagebreak
+
+Nyní stiskneme PASTE kombinaci ([$\diamond$]+[ESC]):
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE5.PNG}
+\end{figure}
+
+Ještě provedeme sumaci sloupce tím, že do buňky C5 zkopírujeme buňku B5:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE6.PNG}
+\end{figure}
+
+Pomocí těchto kroků vytvoříme i zbylé potřebné sloupce, jak je naznačeno na tabulce s layoutem:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE7.PNG}
+\end{figure}
+
+\pagebreak
+
+Pakliže se chceme vyhnout lidské opisovací chybě, můžeme poněkud zdlouhavě vyexportovat potřebné hodnoty do proměnných. Ukážeme si to na buňce A5, tedy $\sum x_i$.
+
+Kurzorem buňku vybereme, otevřeme nabídku Edit (klávesa [F3]) a otevřeme zde nabídku Export...
+
+Jako Type zvolíme Expr (expression), zvolíme název (např. xi), ověříme, že je v kolonce Cell správná buňka a odenterujeme.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE8.PNG}
+\end{figure}
+
+Tímto způsobem exportujeme všechny buňky se sumou.
+
+Opustíme program CellSheet pomocí QUIT kombinace a spustíme program Simultaneous Eqn Solver. Počet rovnic je 3, počet proměnných taktéž.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE9.PNG}
+\end{figure}
+
+Do buňky a(1, 1) vložíme počet zadaných bodů, tedy 4. Do zbylých buňek vkládejte názvy proměnných odpovídající jednotlivým sumám. Všimnětě si, že se název proměnné po vložení změní na číslo.
+
+Takto zadáme celou soustavu rovnic:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE10.PNG}
+\end{figure}
+
+\pagebreak
+
+Klávesou [F5] spustíme SOLVE a ukážou se nám výsledky:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/CTVERCE11.PNG}
+\end{figure}
+
+$x_1$ je $C_0$, $x_2$ je $C_1$ a $x_3$ je $C_2$, výsledná parabola je tedy:
+
+\[
+	y = 6,1792 - 4,0780 x + 0,7143 x^2
+\]
 
 \end{document}
