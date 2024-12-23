@@ -24,12 +24,15 @@
 \pagebreak
 
 \section{Prerekvizity}
+\label{sec:pre}
 Vyžadován je tabulkový editor CellSheet, který si můžete stáhnout zde:\\ \url{https://education.ti.com/en/software/details/en/C348D29C99284143B9E3FE93CF6742A6/89cellsheet}
 
 Taktéž je vyžadován Simultaneous Equation Solver App for the TI-89 Titanium, ke stažení zde:\\ \url{https://education.ti.com/en/software/details/en/BD358C4836B84DBCBA254D6554FBBEAC/89simultaneousequationsolver}
 
 \section{Základní práce s kalkulačkou}
+\label{sec:zaklady}
 \subsection{Změna aktuálně používané složky a její vytvoření}
+\label{ssec:slozky}
 Je praktické si vytvářet pro různé předměty složky a práci soustředit do nich.
 
 Vytvoření probíhá následovně:
@@ -59,6 +62,7 @@ Položku volíme šipkou doprava, potvrzujeme klávesou [ENTER] a s uložením n
 \pagebreak
 
 \subsection{Uložení funkce jedné proměnné}
+\label{ssec:ulozeni1fce}
 V MODE menu se ujistěte, že položka Graph je nastavena na FUNCTION.
 
 Klávesovou kombinací [$\diamond$]+[F1] vyvoláme Y= menu. Zde můžeme do jednotlivých proměnných ukládat kýžené funkce.
@@ -89,6 +93,7 @@ Pakliže výsledek není ve tvaru, který by nám vyhovoval (například je zlom
 \pagebreak
 
 \subsection{Uložení funkce dvou proměnných}
+\label{ssec:ulozeni2fce}
 V MODE menu je nutno položku Graph přepnout do 3D:
 
 \begin{figure}[H]
@@ -113,6 +118,7 @@ Musíme však mít na paměti, že do závorek za názvem proměnné je třeba d
 \pagebreak
 
 \subsection{Vytvoření matice/vektoru}
+\label{ssec:matice}
 Velmi jednoduché matice můžeme zadat přímo z výchozí obrazovky, je to však praktické nanejvýš u vektorů. Vektor [5;3] zadáme jako:
 
 [[5][3]]
@@ -180,6 +186,7 @@ Výsledek pro funkci dvou proměnných je takovýhle:
 \end{figure}
 
 \subsection{Derivování}
+\label{ssec:derivace}
 Derivovat můžeme přímo z výchozí obrazovky, potřebnou funkci vyvoláme kombinací [2ND]+[8]. První parametr je vstupní funkce, druhý proměnná, podle které derivujeme (díky tomu je možno provádět i parciální derivace). Vstupem může být jak ručně napsaná funkce, tak funkce uložená do speciální proměnné:
 
 \begin{figure}[H]
@@ -190,6 +197,7 @@ Derivovat můžeme přímo z výchozí obrazovky, potřebnou funkci vyvoláme ko
 \pagebreak
 
 \subsection{Integrování}
+\label{ssec:integrace}
 Integrovat můžeme přímo z výchozí obrazovky, potřebnou funkci vyvoláme kombinací [2ND]+[7]. Funkce má 4 parametry, 2 jsou volitelné. První parametr je vstupní funkce, druhý proměnná, podle které integrujeme. Vstupem může být jak ručně napsaná funkce, tak funkce uložená do speciální proměnné:
 
 \begin{figure}[H]
@@ -205,6 +213,7 @@ Pakliže chceme použít určitý integrál, využijeme i třetí a čtvrtý par
 \end{figure}
 
 \subsection{Základy práce s tabulkovým procesorem CellSheet}
+\label{ssec:cellsheet}
 Aplikaci CellSheet, pakliže ji máme nainstalovanou, vyvoláme z nabídky APPS -> FlashApps... -> CellSheet, kde z nabídky zvolíme New. V dialogu zvolíme složku a název proměnné. Otevře se nám okno nápadně připomínající Excel:
 
 \begin{figure}[H]
@@ -249,6 +258,7 @@ V dialogu zvolíme Type: Expr, do Variable vložíme název proměnné, do Cell 
 \end{figure}
 
 \subsection{Řešení soustav lineárních rovnic}
+\label{ssec:linsoustavy}
 Stejně jako u Casio kalkulaček lze toto řešit pomocí matic, což však může být zdlouhavé. Lze si nicméně nainstalovat aplikaci Simultaneous Eqn Solver.
 
 Tu spustíme pomocí APPS -> FlashApps... -> Simultaneous Eqn Solver. Z nabídky vybereme New...
@@ -286,7 +296,9 @@ Výsledky vyvoláme stisknutím klávesy [F5]:
 \pagebreak
 
 \section{Numerické metody}
+\label{sec:nummetody}
 \subsection{Metoda nejmenších čtverců}
+\label{ssec:ctverce}
 Metodou nejmenších čtverců proložte následující body parabolou.
 
 \begin{table}[H]
@@ -426,5 +438,88 @@ $x_1$ je $C_0$, $x_2$ je $C_1$ a $x_3$ je $C_2$, výsledná parabola je tedy:
 \[
 	y = 6,1792 - 4,0780 x + 0,7143 x^2
 \]
+
+\subsection{Řešení jedné nelineární rovnice Newtonovou metodou}
+\label{ssec:1newton}
+Je dána rovnice $e^x - 6 + x^2 = 0$.\\
+Najděte interval délky 1 s celočíselnými mezemi, v němž leží záporný kořen této rovnice.
+
+Prvně je potřeba nalézt interval žádané délky, v němž leží řešení. Toto je možno graficky, případně nalezením řešení pomocí solveru a určením intervalu z něj.
+
+Solver je možno vyvolat pomocí funkce solve(), jejíž první argument je hledaná rovnice a druhý argument proměnná, která se v rovnici vyskytuje. Abychom nemuseli solve funkci psát manuálně, je možno ji vyvolat z Algebra menu skrývajícím se pod klávesou [F2]. Počítejte s možností, že kalkulačka může hledat řešení i půl minuty.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON1.PNG}
+\end{figure}
+
+Záporný kořen je $x = -2,43$, interval tedy může být $<-3; -2>$.
+
+\pagebreak
+
+Pakliže jsme tak doteď neučinili, je záhodno si funkci uložit do Y= menu, viz kapitola \ref{ssec:ulozeni1fce}:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON2.PNG}
+\end{figure}
+
+Nyní je potřebné funkci dvakrát zderivovat, pro návod vizte kapitolu \ref{ssec:derivace}.\\
+\textit{Pozn.: Pro snadné uložení zderivované f-ce se kurzorem posuneme do výsledku, enterem ho přesuneme do vstupního řádku a nasměrujeme do proměnné y2(x), případně y3(x), viz kapitola \ref{ssec:ulozeni1fce}.}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON3.PNG}
+\end{figure}
+
+Nyní si vybereme jeden z krajních bodů nalezeného intervalu (zvolíme si $-3$) a ověříme konvergenci metody pomocí podmínky $f(x_0) \cdot f''(x_0) > 0$:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON4.PNG}
+\end{figure}
+
+$6,25 > 0$, hodnotu $-3$ lze tedy použít jako počáteční aproximaci.
+
+\pagebreak
+
+Nyní si spustíme CellSheet a vytvoříme si novou tabulku. Do buňky A1 vložíme naši počáteční aproximaci.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON5.PNG}
+\end{figure}
+
+Další aproximaci lze zjistit z tohoto vzorce:
+\[
+	x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}
+\]
+
+Funkci f(x) máme uloženou v y1(x), funkci f'(x) v y2(x), do buňky A2 pak tento vzorec vložíme následujícím způsobem:\\
+=a1-y1(a1)/y2(a1)
+
+Do buňky B2 vložíme přesnost výpočtu, kterou zjistíme ze vzorce:
+\[
+	\xi = |X_{k+1} - x_k|
+\]
+Což je možno vložit jako:\\
+=abs(a2-a1)
+
+Tímto jsme provedli 1 krok:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON6.PNG}
+\end{figure}
+
+Nyní budeme postupně kopírovat hodnoty ze sloupce A a ze sloupce B níže, dokud nedosáhneme požadované přesnosti (například $10^{-3}$), kteréžto jsme dosáhli v buňce A4:
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/1NEWTON7.PNG}
+\end{figure}
+
+\textit{Pozn.: Šířka sloupce může být příliš malá na zobrazení hodnoty na dostatečný počet des. míst. Chceme-li sloupec rozšířit, tak při vybrané buňce z požadovaného sloupce zvolíme Edit -> Column Format, kde zvětšíme hodnotu Col Width (např. na 10) a Display Digit (např. na FLOAT 12)}.
 
 \end{document}
