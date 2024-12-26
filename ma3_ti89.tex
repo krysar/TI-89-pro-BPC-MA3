@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{bm}
 \usepackage{graphicx}
 \usepackage{lmodern}
 \usepackage{float}
@@ -521,5 +522,135 @@ Nyní budeme postupně kopírovat hodnoty ze sloupce A a ze sloupce B níže, do
 \end{figure}
 
 \textit{Pozn.: Šířka sloupce může být příliš malá na zobrazení hodnoty na dostatečný počet des. míst. Chceme-li sloupec rozšířit, tak při vybrané buňce z požadovaného sloupce zvolíme Edit -> Column Format, kde zvětšíme hodnotu Col Width (např. na 10) a Display Digit (např. na FLOAT 12)}.
+
+\subsection{Řešení soustavy nelineárních rovnic Newtonovou metodou}
+
+Je dána soustava rovnic
+
+\begin{align*}
+	x^2 y - x y^2 + 2 &= 0\\
+	x^3 + y - 3 &= 0
+\end{align*}
+
+Řešte tuto soustavu Newtonovou metodou. Proveďte dva kroky metody. Vyjděte z bodu $ \left\{ x_0; y_0 \right\} = \left\{ 1; 1 \right\} $.
+
+Nejprve je nutno kalkulačku přepnout do režimu práce s funkcemi dvou proměnných dle kapitoly \ref{ssec:ulozeni2fce}.
+
+Funkce $f_1(x,y)$ a $f_2(x,y)$ uložíme do funkcí z1 a z2:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON1.PNG}
+\end{figure}
+
+Následně v souladu s kapitolou \ref{ssec:derivace} vypočteme parciální derivace obou funkcí (tj. vypočteme derivaci obou funkcí podle x a podle y) a v souladu s kapitolou \ref{ssec:ulozeni2fce} (podrobněji v kapitle \ref{ssec:ulozeni1fce}) je uložíme do proměnných:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON2.PNG}
+\end{figure}
+
+Počítejme s následujícím uložením: $\frac{\partial f_1}{\partial x}$ = z3, $\frac{\partial f_1}{\partial y}$ = z4, $\frac{\partial f_2}{\partial x}$ = z5, $\frac{\partial f_2}{\partial y}$ = z6
+
+\pagebreak
+
+Následná aproximace pro soustavy nelineárních rovnic se počítá dle následujících vzorců:
+\[
+	\mathbf{F'}(\mathbf{x}^{(k)}) \cdot \boldsymbol{\delta}^{(k)} = - \mathbf{F}(\mathbf{x}^{(k)})
+\]
+\[
+	\mathbf{x}^{(k + 1)} = \mathbf{x}^{(k)} + \boldsymbol{\delta}^{(k)}
+\]
+
+$\mathbf{F'}$ je matice derivací a má následující tvar:
+\[
+	\mathbf{F'} =
+	\begin{bmatrix}
+		\frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y} \\
+		\frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial y}
+	\end{bmatrix}
+\]
+
+$\mathbf{F}$ je vektor vstupních funkcí a má následující tvar:
+\[
+	\mathbf{F} = 
+	\begin{bmatrix}
+		f_1(x,y)\\
+		f_2(x,y)
+	\end{bmatrix}
+\]
+
+V souladu s kapitolou \ref{ssec:matice} vytvoříme obě matice. Matici derivací předpokládejme v proměnné fd, vektor vstupních funkcí v proměnné f:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON3.PNG}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON4.PNG}
+\end{figure}
+
+\pagebreak
+
+Nyní spočítáme 1. aproximaci:
+
+Do obou matic dosadíme počáteční aproximaci. Vektor f potřebujeme záporný:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON5.PNG}
+\end{figure}
+
+Nyní jsme schopni spočítat $\boldsymbol{\delta}^{(1)}$. Běžný způsob řešení soustavy lineárních rovnic by zde byl příliš zdlouhavý, proto využijeme podobný postup, jako při řešení MUN/MSP v předmětu EL1 a využijeme následujícího faktu:
+
+\[
+	\boldsymbol{\delta}^{(k)} = \mathbf{F'}(\mathbf{x}^{(k)})^{-1} \cdot \left( - \mathbf{F}(\mathbf{x}^{(k)}) \right)
+\]
+
+Dosazené matice můžeme do vstupního řádku zkopírovat stejným způsobem, jakým kopírujeme buňky v CellSheet. Spočtení $\boldsymbol{\delta}^{(1)}$ je pak triviální:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON6.PNG}
+\end{figure}
+
+\textit{Velmi zjednodušeně řečeno: zkopírujte dosazenou matici (tj. s čísly) do vstupního (dolního) řádku, dopište $\wedge$-1~*\\
+Následně zkopírujte dosazenou f matici, vložte do vstupního řádku a stistkněte Enter.}
+
+Abyste získali první aproximaci, musíte přičíst k výsledku $\boldsymbol{\delta}^{(0)}$, tedy počáteční aproximaci. Nejrychlejši bude vložit ji ručně jako matici přímo do vstupního řádku jako [[1][1]]. Tím získáte výslednou 1. aproximaci:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON7.PNG}
+\end{figure}
+
+\pagebreak
+
+Podobným způsobem provedeme 2. aproximaci:
+
+Do matice fd a -f dosadíme 1. aproximaci:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON8.PNG}
+\end{figure}
+
+Stejným způsobem jako v předchozím kroku spočítáme $\boldsymbol{\delta}^{(2)}$:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON9.PNG}
+\end{figure}
+
+Abychom získali výslednou 2. aproximaci, přičteme výsledek předchozího kroku:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{img/2NEWTON10.PNG}
+\end{figure}
+
+Tím jsme získali požadovaný výsledek.
 
 \end{document}
